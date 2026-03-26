@@ -1,0 +1,50 @@
+# Atlas Econômico do Vale do Paraíba — Dependências Python
+# Gerado para Python 3.11
+# Instalar via: pip install -r requirements.txt
+# Ou via conda: conda env create -f environment.yml (recomendado)
+
+# --- Core ---
+python-dotenv==1.0.0
+pyyaml==6.0.1
+loguru==0.7.2
+
+# --- Dados e análise ---
+pandas==2.2.0
+numpy==1.26.3
+scipy==1.12.0
+
+# --- Google Cloud ---
+google-cloud-bigquery==3.17.2
+google-cloud-storage==2.14.0
+db-dtypes==1.2.0          # tipos BigQuery para pandas
+
+# --- Geoespacial ---
+geopandas==0.14.3
+folium==0.15.1
+shapely==2.0.3
+pyproj==3.6.1
+
+# --- HTTP e coleta ---
+requests==2.31.0
+httpx==0.26.0
+tenacity==8.2.3           # retry com backoff exponencial
+
+# --- dbt ---
+dbt-core==1.7.6
+dbt-bigquery==1.7.5
+
+# --- Visualização ---
+matplotlib==3.8.2
+seaborn==0.13.2
+plotly==5.18.0
+
+# --- Notebooks ---
+jupyter==1.0.0
+jupyterlab==4.1.0
+nbconvert==7.14.0
+
+# --- Qualidade de código ---
+ruff==0.2.1
+mypy==1.8.0
+pytest==8.0.0
+pytest-cov==4.1.0

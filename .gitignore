@@ -1,0 +1,124 @@
+# =============================================================================
+# Atlas Econômico do Vale do Paraíba — .gitignore
+# =============================================================================
+# REGRA FUNDAMENTAL: dados brutos e credenciais NUNCA vão para o repositório.
+# Apenas código, documentação e dados processados/anonimizados são versionados.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# CREDENCIAIS E SEGREDOS — nunca commitar
+# -----------------------------------------------------------------------------
+credentials/
+secrets/
+*.json
+!package.json
+!package-lock.json
+*.key
+*.pem
+*.p12
+.env
+.env.*
+!.env.example
+gcp-service-account*.json
+service_account*.json
+*_credentials.json
+bigquery_key*.json
+config/secrets.yaml
+config/secrets.yml
+
+# -----------------------------------------------------------------------------
+# DADOS BRUTOS — grandes, sensíveis ou sujeitos a termos de uso
+# -----------------------------------------------------------------------------
+# Dados da Receita Federal (CNPJ) - arquivo de ~3GB
+data/raw/cnpj/
+data/raw/receita_federal/
+
+# Dados CAGED brutos - arquivos mensais grandes
+data/raw/caged/
+data/raw/caged_*.txt
+data/raw/caged_*.csv
+
+# Dados RAIS brutos - microdados restritos
+data/raw/rais/
+
+# Qualquer arquivo Parquet ou CSV bruto grande
+data/raw/**/*.parquet
+data/raw/**/*.csv
+data/raw/**/*.zip
+data/raw/**/*.7z
+
+# Shapefiles brutos (substituídos por versões processadas no GCS)
+data/external/shapefiles/raw/
+
+# -----------------------------------------------------------------------------
+# DADOS PROCESSADOS LOCAIS — ficam no BigQuery/GCS, não no Git
+# -----------------------------------------------------------------------------
+data/processed/
+!data/processed/.gitkeep
+
+# -----------------------------------------------------------------------------
+# AMBIENTES PYTHON / CONDA
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+.conda/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# -----------------------------------------------------------------------------
+# JUPYTER
+# -----------------------------------------------------------------------------
+.ipynb_checkpoints/
+# Outputs de notebooks (podem conter dados sensíveis)
+# Use `jupyter nbconvert --clear-output` antes de commitar
+notebooks/**/*_output.ipynb
+
+# -----------------------------------------------------------------------------
+# IDEs E EDITORES
+# -----------------------------------------------------------------------------
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json.example
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# -----------------------------------------------------------------------------
+# LOGS E TEMPORÁRIOS
+# -----------------------------------------------------------------------------
+logs/
+*.log
+tmp/
+temp/
+.cache/
+*.tmp
+
+# -----------------------------------------------------------------------------
+# ARTEFATOS DE BUILD E TESTES
+# -----------------------------------------------------------------------------
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# -----------------------------------------------------------------------------
+# RELATÓRIOS GERADOS (outputs ficam no GCS ou GitHub Pages)
+# -----------------------------------------------------------------------------
+reports/generated/
+outputs/
+*.html
+!docs/*.html
+!src/visualization/templates/*.html

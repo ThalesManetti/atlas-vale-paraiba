@@ -1,0 +1,21 @@
+name: atlas-vale
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+
+  # Geoespacial — melhor instalar via conda-forge para evitar conflitos de GDAL
+  - geopandas=0.14
+  - gdal
+  - fiona
+  - pyproj=3.6
+
+  # Jupyter
+  - jupyterlab=4.1
+  - nbconvert=7.14
+
+  - pip:
+    - -r requirements.txt

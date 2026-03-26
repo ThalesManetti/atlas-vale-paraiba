@@ -1,0 +1,88 @@
+name: CI — Testes e validação
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # -------------------------------------------------------------------
+  # Job 1: Verificação de segurança — garante que nenhum segredo
+  # foi acidentalmente adicionado ao repositório
+  # -------------------------------------------------------------------
+  security-check:
+    name: Verificação de segredos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Verificar arquivos proibidos no commit
+        run: |
+          # Falha se qualquer arquivo JSON (exceto package.json) for commitado
+          if git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -E '\.json$' | grep -v 'package.*\.json'; then
+            echo "ERRO: arquivo .json detectado no commit. Credenciais nunca devem ser versionadas."
+            exit 1
+          fi
+          # Falha se .env for commitado
+          if git diff --name-only HEAD~1 HEAD 2>/dev/null | grep -E '^\.env$'; then
+            echo "ERRO: arquivo .env detectado no commit."
+            exit 1
+          fi
+          echo "Verificação de segurança: OK"
+
+      - name: Verificar .gitignore cobre padrões críticos
+        run: |
+          patterns=("credentials/" "*.json" ".env" "data/raw/")
+          for p in "${patterns[@]}"; do
+            if ! grep -qF "$p" .gitignore; then
+              echo "AVISO: .gitignore não cobre o padrão: $p"
+            fi
+          done
+
+  # -------------------------------------------------------------------
+  # Job 2: Lint e formatação
+  # -------------------------------------------------------------------
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar ruff
+        run: pip install ruff==0.2.1
+
+      - name: Lint com ruff
+        run: ruff check src/ tests/
+
+  # -------------------------------------------------------------------
+  # Job 3: Testes unitários (sem dependências de GCP)
+  # -------------------------------------------------------------------
+  test:
+    name: Testes unitários
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Instalar dependências de teste
+        run: |
+          pip install pytest pytest-cov pandas numpy scipy pyyaml python-dotenv
+
+      - name: Executar testes
+        run: pytest tests/ -v --cov=src --cov-report=term-missing
+        env:
+          # Testes unitários não precisam de credenciais GCP reais
+          GCP_PROJECT_ID: "test-project"
+          BQ_DATASET_BRONZE: "bronze_test"
+          BQ_DATASET_SILVER: "silver_test"
+          BQ_DATASET_GOLD: "gold_test"

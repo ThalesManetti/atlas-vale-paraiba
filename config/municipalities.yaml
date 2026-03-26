@@ -1,0 +1,168 @@
+# Municípios alvo — Atlas Econômico do Vale do Paraíba
+# Fonte dos códigos IBGE: IBGE Concla (https://concla.ibge.gov.br)
+# Última verificação: março/2026
+
+municipalities:
+
+  # --- Sub-região SJC: alta tecnologia, aeroespacial, serviços sofisticados ---
+  - id: "3549904"
+    name: "São José dos Campos"
+    short_name: "SJC"
+    subregion: "sjc"
+    profile: "tecnologia_servicos"
+    population_2022: 697428
+    notes: >
+      Sede da Embraer, GM, Ericsson, Petrobras. Maior complexo aeroespacial
+      da América Latina. Perfil de alto risco para pejotização nos setores
+      de TI, engenharia e serviços especializados.
+
+  - id: "3524402"
+    name: "Jacareí"
+    short_name: "JAC"
+    subregion: "sjc"
+    profile: "industria_diversificada"
+    population_2022: 238769
+    notes: >
+      Indústria diversificada, proximidade com SJC cria transbordamento
+      de mão de obra qualificada.
+
+  - id: "3299606"
+    name: "Caçapava"
+    short_name: "CAC"
+    subregion: "sjc"
+    profile: "industria_siderurgica"
+    population_2022: 100068
+    notes: >
+      Indústria siderúrgica e metalúrgica. Perfil CLT mais resistente
+      — controle de grupo de contraste para o IPP.
+
+  # --- Sub-região Taubaté: indústria automotiva, logística, comércio ---
+  - id: "3554102"
+    name: "Taubaté"
+    short_name: "TAU"
+    subregion: "taubate"
+    profile: "industria_automotiva"
+    population_2022: 320871
+    notes: >
+      Volkswagen (histórica), Embraer (divisão), comércio regional forte.
+      Segundo maior PIB da região.
+
+  - id: "3537107"
+    name: "Pindamonhangaba"
+    short_name: "PIN"
+    subregion: "taubate"
+    profile: "industria_comercio"
+    population_2022: 175872
+    notes: >
+      Indústria diversificada, polo logístico emergente na Via Dutra.
+
+  - id: "3521606"
+    name: "Tremembé"
+    short_name: "TRE"
+    subregion: "taubate"
+    profile: "servicos_logistica"
+    population_2022: 48073
+    notes: >
+      Perfil de serviços e logística. Município de menor porte no grupo,
+      útil para análise de escala.
+
+  # --- Médio Vale: indústria tradicional, histórico ---
+  - id: "3517303"
+    name: "Guaratinguetá"
+    short_name: "GUA"
+    subregion: "medio_vale"
+    profile: "industria_turismo_religioso"
+    population_2022: 120883
+    notes: >
+      Academia Militar das Agulhas Negras (AMAN), indústria tradicional,
+      turismo religioso (Frei Galvão). Emprego militar não entra no CAGED.
+
+  - id: "3536505"
+    name: "Lorena"
+    short_name: "LOR"
+    subregion: "medio_vale"
+    profile: "quimica_educacao"
+    population_2022: 90571
+    notes: >
+      Setor químico (Braskem, Rhodia-Solvay no passado), forte presença
+      do ensino superior (EEL-USP, UNISAL). Alta concentração de
+      trabalhadores qualificados — risco de pejotização em engenharia.
+
+  - id: "3520400"
+    name: "Cruzeiro"
+    short_name: "CRU"
+    subregion: "medio_vale"
+    profile: "metalurgia"
+    population_2022: 78726
+    notes: >
+      Indústria metalúrgica tradicional. Declínio industrial observado
+      nas últimas décadas — caso de estudo para desindustrialização local.
+
+  # --- Grupos de contraste: turismo, agropecuária, pequeno porte ---
+  - id: "3472203"
+    name: "Aparecida"
+    short_name: "APR"
+    subregion: "contraste"
+    profile: "turismo_religioso"
+    population_2022: 40516
+    notes: >
+      Economia dominada pelo turismo religioso (Basílica de N.S.Aparecida).
+      Alta sazonalidade, emprego informal relevante.
+      Grupo de contraste para análise de diversificação.
+
+  - id: "3537305"
+    name: "Roseira"
+    short_name: "ROS"
+    subregion: "contraste"
+    profile: "agropecuaria"
+    population_2022: 10432
+    notes: >
+      Menor município do grupo. Agropecuária dominante.
+      Serve como âncora inferior no ranking do IDE.
+
+  - id: "3549300"
+    name: "Santa Branca"
+    short_name: "STB"
+    subregion: "contraste"
+    profile: "agropecuaria_pequeno"
+    population_2022: 14701
+    notes: >
+      Agropecuária e serviços locais. Represa de Santa Branca (energia).
+      Segundo município de menor PIB do grupo.
+
+# Setores-foco para análise de pejotização (divisões CNAE 2.0)
+pejotizacao_focus_sectors:
+  - cnae: "62"
+    name: "Atividades dos serviços de tecnologia da informação"
+    rationale: >
+      Alta prevalência histórica de pejotização. Castro (2013) documenta
+      o fenômeno em detalhes para o setor de TI brasileiro.
+
+  - cnae: "71"
+    name: "Serviços de arquitetura e engenharia"
+    rationale: >
+      Setor com alta concentração de profissionais qualificados.
+      Relevante especialmente em SJC e Lorena (USP-EEL).
+
+  - cnae: "73"
+    name: "Publicidade e pesquisa de mercado"
+    rationale: >
+      Serviços criativos com alta volatilidade de vínculo.
+
+  - cnae: "74"
+    name: "Outras atividades profissionais, científicas e técnicas"
+    rationale: >
+      Categoria residual que inclui consultoria, pesquisa independente.
+      Abrange muitos perfis pejotizados.
+
+  - cnae: "82"
+    name: "Serviços de escritório e apoio administrativo"
+    rationale: >
+      Conforme BigDataCorp (2024), 'apoio administrativo' foi uma das
+      principais atividades de novos MEIs em 2024 — sinal de pejotização.
+
+  - cnae: "86"
+    name: "Atividades de atenção à saúde humana"
+    rationale: >
+      Pejotização de médicos é fenômeno amplamente documentado
+      (Carvalho, 2010).
