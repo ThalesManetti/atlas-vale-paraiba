@@ -26,7 +26,7 @@ municipalities:
       Indústria diversificada, proximidade com SJC cria transbordamento
       de mão de obra qualificada.
 
-  - id: "3299606"
+  - id: "3508504"
     name: "Caçapava"
     short_name: "CAC"
     subregion: "sjc"
@@ -67,7 +67,7 @@ municipalities:
       útil para análise de escala.
 
   # --- Médio Vale: indústria tradicional, histórico ---
-  - id: "3517303"
+  - id: "3518404"
     name: "Guaratinguetá"
     short_name: "GUA"
     subregion: "medio_vale"
@@ -99,8 +99,8 @@ municipalities:
       nas últimas décadas — caso de estudo para desindustrialização local.
 
   # --- Grupos de contraste: turismo, agropecuária, pequeno porte ---
-  - id: "3472203"
-    name: "Aparecida"
+  - id: "3502507"
+    name: "Aparecida do Norte"
     short_name: "APR"
     subregion: "contraste"
     profile: "turismo_religioso"
